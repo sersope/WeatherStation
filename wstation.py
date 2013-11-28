@@ -60,15 +60,15 @@ wnd=Tk()
 wnd.title('Estación meteorológica')
 wnd.rowconfigure(0,weight=1)
 wnd.columnconfigure(0,weight=1)
-wnd.minsize(300,40)
-frm_ppal = ttk.Frame(wnd)
+wnd.minsize(710,170)
+frm_ppal = ttk.Frame(wnd,padding=5)
 frm_ppal.grid(row=0,column=0,sticky='WENS')
 frm_ppal.columnconfigure(99,weight=1)
-frm_ppal.rowconfigure(99, weight=1,minsize=400)
+frm_ppal.rowconfigure(99, weight=1)
 
 #Nombre de la estacion
-station=ttk.Label(frm_ppal,text='Benifayó\nFrancisco Climent',font='TkTextFont 12 bold')
-station.grid(row=0,column=0,columnspan=999,sticky='WN')
+lbl_station=ttk.Label(frm_ppal,text='Benifayó\nFrancisco Climent',font='TkTextFont 12 italic')
+lbl_station.grid(row=0,column=0,columnspan=999,sticky='WN')
 
 # Frames de variables
 te=build_frame(frm_ppal,'Temp.exterior',1,0)
@@ -107,11 +107,11 @@ if dir_data==None:
 #Valores actuales
 datos=DataStore.calib_store(dir_data)
 d=datos[datos.nearest(datetime.utcnow())]
-te['act'].set('{:.1f} ºC'.format(d['temp_out']))
+te['act'].set('{:.1f} ᴼC'.format(d['temp_out']))
 he['act'].set('{:2d} %'.format(d['hum_out']))
 pr['act'].set('{:.1f} mb'.format(d['rel_pressure']))
-vt['act'].set('{:.1f} km/h'.format(d['wind_gust'])
-ti['act'].set('{:.1f} ºC'.format(d['temp_in']))
+vt['act'].set('{:.1f} km/h'.format(d['wind_gust']))
+ti['act'].set('{:.1f} ᴼC'.format(d['temp_in']))
 hi['act'].set('{:2d} %'.format(d['hum_in']))
 
 timer(wnd,ll['act'])
