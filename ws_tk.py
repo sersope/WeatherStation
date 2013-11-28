@@ -1,7 +1,10 @@
+import sys
 from tkinter import *
-from tkinter import ttk
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from matplotlib.figure import Figure
+from tkinter import ttk,filedialog
+from pywws import DataStore
+from datetime import datetime
+#~ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+#~ from matplotlib.figure import Figure
 
 def build_frame(parent,text,row,column,double=True):
 
@@ -49,8 +52,8 @@ i=0
 def timer(root,lbl):
     global i
     i=i+1
-    lbl['text']=str(i)
-    root.after(1,timer,root,lbl)
+    lbl.set(str(i))
+    root.after(100,timer,root,lbl)
 
 #Ventana y frame ppal
 wnd=Tk()
@@ -80,30 +83,36 @@ hi=build_frame(frm_ppal,'Hum. interior',1,6)
 frm_graf=ttk.Frame(frm_ppal,borderwidth=1,relief='solid')
 frm_graf.grid(row=99,column=0,columnspan=999,sticky='WENS')
 #TEST
-f = Figure(figsize=(5,4), dpi=150)
-a = f.add_subplot(111)
-t = range(10)
-s = range(10)
-a.plot(t,s)
-a.set_title('Tk embedding')
-a.set_xlabel('X axis label')
-a.set_ylabel('Y label')
-# a tk.DrawingArea
-canvas = FigureCanvasTkAgg(f, master=frm_graf)
-canvas.show()
-canvas._tkcanvas.grid(row=0,column=0,sticky='WENS')
+#~ f = Figure(figsize=(5,4), dpi=150)
+#~ a = f.add_subplot(111)
+#~ t = range(10)
+#~ s = range(10)
+#~ a.plot(t,s)
+#~ a.set_title('Tk embedding')
+#~ a.set_xlabel('X axis label')
+#~ a.set_ylabel('Y label')
+#~ # a tk.DrawingArea
+#~ canvas = FigureCanvasTkAgg(f, master=frm_graf)
+#~ canvas.show()
+#~ canvas._tkcanvas.grid(row=0,column=0,sticky='WENS')
 
-#TEST
-te['act'].set('18,2 ᴼC')
-te['maxd'].set('maxd')
-te['maxm'].set('maxm')
-te['maxy'].set('maxy')
-te['mind'].set('mind')
-te['minm'].set('minm')
-te['miny'].set('miny')
-he['act'].set('45 %')
-vt['act'].set('ONO 12 km/h')
-ll['act'].set('23,4 mm')
+#.ini
+params=DataStore.ParamStore('.','WeatherStation.ini')
+dir_data=params.get('paths','dir_data')
+if dir_data==None:
+    dir_data=filedialog.askdirectory(title='Seleccione directorio con datos de pywws')
+    params.set('paths','dir_data',dir_data)
+    params.flush()
 
-timer(wnd,station)
+#Valores actuales
+datos=DataStore.calib_store(dir_data)
+d=datos[datos.nearest(datetime.utcnow())]
+te['act'].set('{:.1f} ºC'.format(d['temp_out']))
+he['act'].set('{:2d} %'.format(d['hum_out']))
+pr['act'].set('{:.1f} mb'.format(d['rel_pressure']))
+vt['act'].set('{:.1f} km/h'.format(d['wind_gust'])
+ti['act'].set('{:.1f} ºC'.format(d['temp_in']))
+hi['act'].set('{:2d} %'.format(d['hum_in']))
+
+timer(wnd,ll['act'])
 wnd.mainloop()
