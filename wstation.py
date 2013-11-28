@@ -10,7 +10,7 @@ def build_frame(parent,text,row,column,double=True):
 
     #frame
     frm=ttk.Labelframe(parent,text=text,borderwidth=1,relief='solid')
-    frm.grid(row=row,column=column,padx=(0,5),pady=(0,5),sticky='WN')
+    frm.grid(row=row,column=column,padx=(2,2),pady=(0,5),sticky='WN')
     frm.columnconfigure(0,pad=5)
     frm.columnconfigure(1,pad=5)
     if double:
@@ -68,8 +68,10 @@ frm_ppal.rowconfigure(99, weight=1)
 
 #Nombre de la estacion
 lbl_station=ttk.Label(frm_ppal,text='Benifayó\nFrancisco Climent',font='TkTextFont 12 italic')
-lbl_station.grid(row=0,column=0,columnspan=999,sticky='WN')
-
+lbl_station.grid(row=0,column=0,columnspan=5,sticky='WN')
+time_act=StringVar()
+lbl_time=ttk.Label(frm_ppal,text='2013-11-28 15:00:38 UTC',textvariable=time_act)
+lbl_time.grid(row=0,column=5,columnspan=2,sticky='E',padx=2)
 # Frames de variables
 te=build_frame(frm_ppal,'Temp.exterior',1,0)
 he=build_frame(frm_ppal,'Hum. exterior',1,1)
@@ -97,7 +99,7 @@ frm_graf.grid(row=99,column=0,columnspan=999,sticky='WENS')
 #~ canvas._tkcanvas.grid(row=0,column=0,sticky='WENS')
 
 #.ini
-params=DataStore.ParamStore('.','WeatherStation.ini')
+params=DataStore.ParamStore('.','wstation.ini')
 dir_data=params.get('paths','dir_data')
 if dir_data==None:
     dir_data=filedialog.askdirectory(title='Seleccione directorio con datos de pywws')
@@ -107,6 +109,7 @@ if dir_data==None:
 #Valores actuales
 datos=DataStore.calib_store(dir_data)
 d=datos[datos.nearest(datetime.utcnow())]
+time_act.set('Ultima actualización:\n'+str(d['idx']))
 te['act'].set('{:.1f} ᴼC'.format(d['temp_out']))
 he['act'].set('{:2d} %'.format(d['hum_out']))
 pr['act'].set('{:.1f} mb'.format(d['rel_pressure']))
