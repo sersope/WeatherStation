@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 from tkinter import *
 from tkinter import ttk,filedialog
@@ -47,13 +48,20 @@ def build_frame(parent,text,row,column,double=True):
             lbl[r+4].grid(row=r+3,column=2)
     return dict(zip(keys,var))
 
-#TEST
-i=0
-def timer(root,lbl):
-    global i
-    i=i+1
-    lbl.set(str(i))
-    root.after(100,timer,root,lbl)
+def timer(root):
+
+    #Valores actuales
+    datos=DataStore.calib_store(dir_data)
+    d=datos[datos.nearest(datetime.utcnow())]
+    time_act.set('Ultima actualización:\n'+str(d['idx']))
+    te['act'].set('{:.1f} ᴼC'.format(d['temp_out']))
+    he['act'].set('{:2d} %'.format(d['hum_out']))
+    pr['act'].set('{:.1f} mb'.format(d['rel_pressure']))
+    vt['act'].set('{:.1f} km/h'.format(d['wind_gust']))
+    ti['act'].set('{:.1f} ᴼC'.format(d['temp_in']))
+    hi['act'].set('{:2d} %'.format(d['hum_in']))
+
+    root.after(60000,timer,root)
 
 #Ventana y frame ppal
 wnd=Tk()
@@ -106,16 +114,6 @@ if dir_data==None:
     params.set('paths','dir_data',dir_data)
     params.flush()
 
-#Valores actuales
-datos=DataStore.calib_store(dir_data)
-d=datos[datos.nearest(datetime.utcnow())]
-time_act.set('Ultima actualización:\n'+str(d['idx']))
-te['act'].set('{:.1f} ᴼC'.format(d['temp_out']))
-he['act'].set('{:2d} %'.format(d['hum_out']))
-pr['act'].set('{:.1f} mb'.format(d['rel_pressure']))
-vt['act'].set('{:.1f} km/h'.format(d['wind_gust']))
-ti['act'].set('{:.1f} ᴼC'.format(d['temp_in']))
-hi['act'].set('{:2d} %'.format(d['hum_in']))
 
-timer(wnd,ll['act'])
+timer(wnd)
 wnd.mainloop()
