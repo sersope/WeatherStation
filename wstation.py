@@ -1,4 +1,4 @@
-import sys
+
 from tkinter import *
 from tkinter import ttk,filedialog
 from pywws import DataStore

@@ -32,7 +32,7 @@
                     <property name="row_homogeneous">True</property>
                     <property name="column_homogeneous">True</property>
                     <child>
-                      <object class="GtkLabel" id="te_act">
+                      <object class="GtkLabel" id="temp_out">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">22,3 ᴼC</property>
@@ -53,7 +53,7 @@
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Máx.</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -69,7 +69,7 @@
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Mín.</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -119,12 +119,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_maxd">
+                      <object class="GtkLabel" id="d_temp_out_max">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -135,12 +135,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_maxm">
+                      <object class="GtkLabel" id="m_temp_out_max_hi">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -151,12 +151,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_maxy">
+                      <object class="GtkLabel" id="y_temp_out_max_hi">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -167,12 +167,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_mind">
+                      <object class="GtkLabel" id="d_temp_out_min">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -183,12 +183,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_minm">
+                      <object class="GtkLabel" id="m_temp_out_min_lo">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -199,12 +199,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_miny">
+                      <object class="GtkLabel" id="y_temp_out_min_lo">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -268,7 +268,7 @@
                     <property name="row_homogeneous">True</property>
                     <property name="column_homogeneous">True</property>
                     <child>
-                      <object class="GtkLabel" id="he_act">
+                      <object class="GtkLabel" id="hum_out">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">22,3 ᴼC</property>
@@ -305,7 +305,7 @@
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Mín.</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -355,7 +355,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="he_maxd">
+                      <object class="GtkLabel" id="d_hum_out_max">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
@@ -371,7 +371,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="he_maxm">
+                      <object class="GtkLabel" id="m_hum_out_max">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
@@ -387,7 +387,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="he_maxy">
+                      <object class="GtkLabel" id="y_hum_out_max">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
@@ -403,12 +403,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="he_mind">
+                      <object class="GtkLabel" id="d_hum_out_min">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -419,12 +419,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="he_minm">
+                      <object class="GtkLabel" id="m_hum_out_min">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -435,12 +435,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="he_miny">
+                      <object class="GtkLabel" id="y_hum_out_min">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -504,7 +504,7 @@
                     <property name="row_homogeneous">True</property>
                     <property name="column_homogeneous">True</property>
                     <child>
-                      <object class="GtkLabel" id="te_act2">
+                      <object class="GtkLabel" id="rel_pressure">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">22,3 ᴼC</property>
@@ -541,7 +541,7 @@
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Mín.</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -591,7 +591,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_maxd2">
+                      <object class="GtkLabel" id="d_rel_pressure_max">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
@@ -607,7 +607,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_maxm2">
+                      <object class="GtkLabel" id="m_rel_pressure_max">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
@@ -623,7 +623,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_maxy2">
+                      <object class="GtkLabel" id="y_rel_pressure_max">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
@@ -639,12 +639,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_mind2">
+                      <object class="GtkLabel" id="d_rel_pressure_min">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -655,12 +655,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_minm2">
+                      <object class="GtkLabel" id="m_rel_pressure_min">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -671,12 +671,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_miny2">
+                      <object class="GtkLabel" id="y_rel_pressure_min">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -740,9 +740,10 @@
                     <property name="row_homogeneous">True</property>
                     <property name="column_homogeneous">True</property>
                     <child>
-                      <object class="GtkLabel" id="te_act3">
+                      <object class="GtkLabel" id="wind_gust">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">22,3 ᴼC</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 12"/>
@@ -751,7 +752,7 @@
                       <packing>
                         <property name="left_attach">0</property>
                         <property name="top_attach">1</property>
-                        <property name="width">3</property>
+                        <property name="width">2</property>
                         <property name="height">1</property>
                       </packing>
                     </child>
@@ -761,7 +762,7 @@
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Máx.</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -811,12 +812,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_maxd3">
+                      <object class="GtkLabel" id="d_wind_gust">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -827,12 +828,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_maxm3">
+                      <object class="GtkLabel" id="m_wind_gust">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -843,12 +844,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_maxy3">
+                      <object class="GtkLabel" id="y_wind_gust">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -857,6 +858,25 @@
                         <property name="width">1</property>
                         <property name="height">1</property>
                       </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="wind_dir">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">22,3 ᴼC</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Sans Bold 12"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">1</property>
+                        <property name="width">1</property>
+                        <property name="height">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
                     </child>
                     <child>
                       <placeholder/>
@@ -924,7 +944,7 @@
                     <property name="row_homogeneous">True</property>
                     <property name="column_homogeneous">True</property>
                     <child>
-                      <object class="GtkLabel" id="te_act4">
+                      <object class="GtkLabel" id="rain">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">22,3 ᴼC</property>
@@ -945,7 +965,7 @@
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Total</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -995,12 +1015,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_maxd4">
+                      <object class="GtkLabel" id="d_rain">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1011,12 +1031,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_maxm4">
+                      <object class="GtkLabel" id="m_rain">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1027,12 +1047,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_maxy4">
+                      <object class="GtkLabel" id="y_rain">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1108,7 +1128,7 @@
                     <property name="row_homogeneous">True</property>
                     <property name="column_homogeneous">True</property>
                     <child>
-                      <object class="GtkLabel" id="te_act5">
+                      <object class="GtkLabel" id="temp_in">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">22,3 ᴼC</property>
@@ -1129,7 +1149,7 @@
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Máx.</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1145,7 +1165,7 @@
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Mín.</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1195,12 +1215,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_maxd5">
+                      <object class="GtkLabel" id="d_temp_in_max">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1211,12 +1231,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_maxm5">
+                      <object class="GtkLabel" id="m_temp_in_max_hi">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1227,12 +1247,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_maxy5">
+                      <object class="GtkLabel" id="y_temp_in_max_hi">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1243,12 +1263,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_mind5">
+                      <object class="GtkLabel" id="d_temp_in_min">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1259,12 +1279,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_minm5">
+                      <object class="GtkLabel" id="m_temp_in_min_lo">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1275,12 +1295,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_miny5">
+                      <object class="GtkLabel" id="y_temp_in_min_lo">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1344,7 +1364,7 @@
                     <property name="row_homogeneous">True</property>
                     <property name="column_homogeneous">True</property>
                     <child>
-                      <object class="GtkLabel" id="te_act6">
+                      <object class="GtkLabel" id="hum_in">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">22,3 ᴼC</property>
@@ -1365,7 +1385,7 @@
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Máx.</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1381,7 +1401,7 @@
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Mín.</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1431,12 +1451,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_maxd6">
+                      <object class="GtkLabel" id="d_hum_in_max">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1447,12 +1467,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_maxm6">
+                      <object class="GtkLabel" id="m_hum_in_max">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1463,12 +1483,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_maxy6">
+                      <object class="GtkLabel" id="y_hum_in_max">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#20204a4a8787"/>
+                          <attribute name="foreground" value="#efef29292929"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1479,12 +1499,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_mind6">
+                      <object class="GtkLabel" id="d_hum_in_min">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1495,12 +1515,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_minm6">
+                      <object class="GtkLabel" id="m_hum_in_min">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
@@ -1511,12 +1531,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="te_miny6">
+                      <object class="GtkLabel" id="y_hum_in_min">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">label</property>
                         <attributes>
-                          <attribute name="foreground" value="#efef29292929"/>
+                          <attribute name="foreground" value="#201f4a4a8787"/>
                         </attributes>
                       </object>
                       <packing>
