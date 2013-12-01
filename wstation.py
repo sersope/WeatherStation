@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 from tkinter import *
 from tkinter import ttk,filedialog
@@ -16,10 +15,10 @@ def build_frame(parent,text,row,column,double=True):
     frm.columnconfigure(1,pad=5)
     if double:
         frm.columnconfigure(2,pad=5)
-    frm.rowconfigure(1,pad=5)
-    frm.rowconfigure(3,pad=3)
-    frm.rowconfigure(4,pad=3)
-    frm.rowconfigure(5,pad=3)
+    frm.rowconfigure(1,pad=10)
+    frm.rowconfigure(3,pad=5)
+    frm.rowconfigure(4,pad=5)
+    frm.rowconfigure(5,pad=5)
 
     #fixed labels
     #~ ttk.Label(frm,text=text).grid(column=0,row=0,columnspan=3)
@@ -60,6 +59,45 @@ def timer(root):
     vt['act'].set('{:.1f} km/h'.format(d['wind_gust']))
     ti['act'].set('{:.1f} ᴼC'.format(d['temp_in']))
     hi['act'].set('{:2d} %'.format(d['hum_in']))
+    #Valores diarios
+    datos=DataStore.daily_store(dir_data)
+    d=datos[datos.nearest(datetime.utcnow())]
+    te['maxd'].set('{:.1f} ᴼC'.format(d['temp_out_max']))
+    te['mind'].set('{:.1f} ᴼC'.format(d['temp_out_min']))
+    he['maxd'].set('{:.1f} %'.format(d['hum_out_max']))
+    he['mind'].set('{:.1f} %'.format(d['hum_out_min']))
+    pr['maxd'].set('{:.1f} mb'.format(d['rel_pressure_max']))
+    pr['mind'].set('{:.1f} mb'.format(d['rel_pressure_min']))
+    vt['maxd'].set('{:.1f} km/h'.format(d['wind_gust']))
+    ll['maxd'].set('{:.1f} mm'.format(d['rain']))
+    ti['maxd'].set('{:.1f} ᴼC'.format(d['temp_in_max']))
+    ti['mind'].set('{:.1f} ᴼC'.format(d['temp_in_min']))
+    hi['maxd'].set('{:.1f} %'.format(d['hum_in_max']))
+    hi['mind'].set('{:.1f} %'.format(d['hum_in_min']))
+    #Valores mensuales
+    datos=DataStore.monthly_store(dir_data)
+    d=datos[datos.nearest(datetime.utcnow())]
+    te['maxm'].set('{:.1f} ᴼC'.format(d['temp_out_max_hi']))
+    te['minm'].set('{:.1f} ᴼC'.format(d['temp_out_min_lo']))
+    he['maxm'].set('{:.1f} %'.format(d['hum_out_max']))
+    he['minm'].set('{:.1f} %'.format(d['hum_out_min']))
+    pr['maxm'].set('{:.1f} mb'.format(d['rel_pressure_max']))
+    pr['minm'].set('{:.1f} mb'.format(d['rel_pressure_min']))
+    vt['maxm'].set('{:.1f} km/h'.format(d['wind_gust']))
+    ll['maxm'].set('{:.1f} mm'.format(d['rain']))
+    ti['maxm'].set('{:.1f} ᴼC'.format(d['temp_in_max_hi']))
+    ti['minm'].set('{:.1f} ᴼC'.format(d['temp_in_min_lo']))
+    hi['maxm'].set('{:.1f} %'.format(d['hum_in_max']))
+    hi['minm'].set('{:.1f} %'.format(d['hum_in_min']))
+    #TODO Procesar y mostrar datos anuales
+    te_max=[]
+    te_min=[]
+    for d in datos[:]:
+        te_max.append(d['temp_out_max_hi'])
+        te_min.append(d['temp_out_min_lo'])
+    te['maxy'].set('{:.1f} ᴼC'.format(max(te_max)))
+    te['miny'].set('{:.1f} ᴼC'.format(min(te_min)))
+
 
     root.after(60000,timer,root)
 
