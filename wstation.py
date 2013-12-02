@@ -2,9 +2,9 @@
 from tkinter import *
 from tkinter import ttk,filedialog
 from pywws import DataStore
-from datetime import datetime
-#~ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-#~ from matplotlib.figure import Figure
+from datetime import datetime,timedelta
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
 
 def build_frame(parent,text,row,column,double=True):
 
@@ -52,14 +52,14 @@ def timer(root):
     fecha=datetime.utcnow()
     #Valores actuales
     datos=DataStore.calib_store(dir_data)
-    d=datos[datos.nearest(fecha)]
-    last_act.set('Ultima actualización:\n'+str(d['idx']))
-    te['act'].set('{:.1f} ᴼC'.format(d['temp_out']))
-    he['act'].set('{:2d} %'.format(d['hum_out']))
-    pr['act'].set('{:.1f} mb'.format(d['rel_pressure']))
-    vt['act'].set('{:.1f} km/h'.format(d['wind_gust']))
-    ti['act'].set('{:.1f} ᴼC'.format(d['temp_in']))
-    hi['act'].set('{:2d} %'.format(d['hum_in']))
+    a=datos[datos.nearest(fecha)]
+    last_act.set('Ultima actualización:\n'+str(a['idx']))
+    te['act'].set('{:.1f} ᴼC'.format(a['temp_out']))
+    he['act'].set('{:2d} %'.format(a['hum_out']))
+    pr['act'].set('{:.1f} mb'.format(a['rel_pressure']))
+    vt['act'].set('{:.1f} km/h'.format(a['wind_gust']))
+    ti['act'].set('{:.1f} ᴼC'.format(a['temp_in']))
+    hi['act'].set('{:2d} %'.format(a['hum_in']))
     #Valores diarios
     datos=DataStore.daily_store(dir_data)
     d=datos[datos.nearest(fecha)]
@@ -77,19 +77,19 @@ def timer(root):
     hi['mind'].set('{:2d} %'.format(d['hum_in_min']))
     #Valores mensuales
     datos=DataStore.monthly_store(dir_data)
-    d=datos[datos.nearest(fecha)]
-    te['maxm'].set('{:.1f} ᴼC'.format(d['temp_out_max_hi']))
-    te['minm'].set('{:.1f} ᴼC'.format(d['temp_out_min_lo']))
-    he['maxm'].set('{:2d} %'.format(d['hum_out_max']))
-    he['minm'].set('{:2d} %'.format(d['hum_out_min']))
-    pr['maxm'].set('{:.1f} mb'.format(d['rel_pressure_max']))
-    pr['minm'].set('{:.1f} mb'.format(d['rel_pressure_min']))
-    vt['maxm'].set('{:.1f} km/h'.format(d['wind_gust']))
-    ll['maxm'].set('{:.1f} mm'.format(d['rain']))
-    ti['maxm'].set('{:.1f} ᴼC'.format(d['temp_in_max_hi']))
-    ti['minm'].set('{:.1f} ᴼC'.format(d['temp_in_min_lo']))
-    hi['maxm'].set('{:2d} %'.format(d['hum_in_max']))
-    hi['minm'].set('{:2d} %'.format(d['hum_in_min']))
+    m=datos[datos.nearest(fecha)]
+    te['maxm'].set('{:.1f} ᴼC'.format(m['temp_out_max_hi']))
+    te['minm'].set('{:.1f} ᴼC'.format(m['temp_out_min_lo']))
+    he['maxm'].set('{:2d} %'.format(m['hum_out_max']))
+    he['minm'].set('{:2d} %'.format(m['hum_out_min']))
+    pr['maxm'].set('{:.1f} mb'.format(m['rel_pressure_max']))
+    pr['minm'].set('{:.1f} mb'.format(m['rel_pressure_min']))
+    vt['maxm'].set('{:.1f} km/h'.format(m['wind_gust']))
+    ll['maxm'].set('{:.1f} mm'.format(m['rain']))
+    ti['maxm'].set('{:.1f} ᴼC'.format(m['temp_in_max_hi']))
+    ti['minm'].set('{:.1f} ᴼC'.format(m['temp_in_min_lo']))
+    hi['maxm'].set('{:2d} %'.format(m['hum_in_max']))
+    hi['minm'].set('{:2d} %'.format(m['hum_in_min']))
     #Procesar y mostrar valores anuales
     te_max=[]
     te_min=[]
@@ -128,6 +128,24 @@ def timer(root):
     ti['miny'].set('{:.1f} ᴼC'.format(min(ti_min)))
     hi['maxy'].set('{:2d} %'.format(max(hi_max)))
     hi['miny'].set('{:2d} %'.format(min(hi_min)))
+    #Graficos
+    datos=DataStore.calib_store(dir_data)
+    d_graf=datos[fecha-timedelta(hours=24):]
+    val=[],[],[]
+    for d in d_graf:
+        val[0].append(d['idx'])
+        val[1].append(d['temp_out'])
+        val[2].append(d['temp_in'])
+    #~ t = range(10)
+    #~ s = range(10)
+    subp.cla()
+    #~ subp.set_title('Tk embedding')
+    #~ subp.set_xlabel('X axis label')
+    #~ subp.set_ylabel('Y label')
+    subp.plot(val[0],val[1])
+    subp.plot(val[0],val[2])
+    # a tk.DrawingArea
+    canvas.show()
 
     root.after(60000,timer,root)
 
@@ -158,21 +176,12 @@ ti=build_frame(frm_ppal,'Temp. interior',1,5)
 hi=build_frame(frm_ppal,'Hum. interior',1,6)
 
 #Frame para graficos
-frm_graf=ttk.Frame(frm_ppal,borderwidth=1,relief='solid')
+frm_graf=ttk.Frame(frm_ppal,borderwidth=1,relief='flat')
 frm_graf.grid(row=99,column=0,columnspan=999,sticky='WENS')
-#TEST
-#~ f = Figure(figsize=(5,4), dpi=150)
-#~ a = f.add_subplot(111)
-#~ t = range(10)
-#~ s = range(10)
-#~ a.plot(t,s)
-#~ a.set_title('Tk embedding')
-#~ a.set_xlabel('X axis label')
-#~ a.set_ylabel('Y label')
-#~ # a tk.DrawingArea
-#~ canvas = FigureCanvasTkAgg(f, master=frm_graf)
-#~ canvas.show()
-#~ canvas._tkcanvas.grid(row=0,column=0,sticky='WENS')
+fig = Figure(figsize=(12,5),dpi=80)    #,dpi=72
+subp = fig.add_subplot(111)
+canvas = FigureCanvasTkAgg(fig, master=frm_graf)
+canvas._tkcanvas.grid(row=0,column=0,sticky='WENS')
 
 #.ini
 params=DataStore.ParamStore('.','wstation.ini')
