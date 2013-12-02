@@ -49,10 +49,11 @@ def build_frame(parent,text,row,column,double=True):
 
 def timer(root):
 
+    fecha=datetime.utcnow()
     #Valores actuales
     datos=DataStore.calib_store(dir_data)
-    d=datos[datos.nearest(datetime.utcnow())]
-    time_act.set('Ultima actualización:\n'+str(d['idx']))
+    d=datos[datos.nearest(fecha)]
+    last_act.set('Ultima actualización:\n'+str(d['idx']))
     te['act'].set('{:.1f} ᴼC'.format(d['temp_out']))
     he['act'].set('{:2d} %'.format(d['hum_out']))
     pr['act'].set('{:.1f} mb'.format(d['rel_pressure']))
@@ -61,43 +62,72 @@ def timer(root):
     hi['act'].set('{:2d} %'.format(d['hum_in']))
     #Valores diarios
     datos=DataStore.daily_store(dir_data)
-    d=datos[datos.nearest(datetime.utcnow())]
+    d=datos[datos.nearest(fecha)]
     te['maxd'].set('{:.1f} ᴼC'.format(d['temp_out_max']))
     te['mind'].set('{:.1f} ᴼC'.format(d['temp_out_min']))
-    he['maxd'].set('{:.1f} %'.format(d['hum_out_max']))
-    he['mind'].set('{:.1f} %'.format(d['hum_out_min']))
+    he['maxd'].set('{:2d} %'.format(d['hum_out_max']))
+    he['mind'].set('{:2d} %'.format(d['hum_out_min']))
     pr['maxd'].set('{:.1f} mb'.format(d['rel_pressure_max']))
     pr['mind'].set('{:.1f} mb'.format(d['rel_pressure_min']))
     vt['maxd'].set('{:.1f} km/h'.format(d['wind_gust']))
     ll['maxd'].set('{:.1f} mm'.format(d['rain']))
     ti['maxd'].set('{:.1f} ᴼC'.format(d['temp_in_max']))
     ti['mind'].set('{:.1f} ᴼC'.format(d['temp_in_min']))
-    hi['maxd'].set('{:.1f} %'.format(d['hum_in_max']))
-    hi['mind'].set('{:.1f} %'.format(d['hum_in_min']))
+    hi['maxd'].set('{:2d} %'.format(d['hum_in_max']))
+    hi['mind'].set('{:2d} %'.format(d['hum_in_min']))
     #Valores mensuales
     datos=DataStore.monthly_store(dir_data)
-    d=datos[datos.nearest(datetime.utcnow())]
+    d=datos[datos.nearest(fecha)]
     te['maxm'].set('{:.1f} ᴼC'.format(d['temp_out_max_hi']))
     te['minm'].set('{:.1f} ᴼC'.format(d['temp_out_min_lo']))
-    he['maxm'].set('{:.1f} %'.format(d['hum_out_max']))
-    he['minm'].set('{:.1f} %'.format(d['hum_out_min']))
+    he['maxm'].set('{:2d} %'.format(d['hum_out_max']))
+    he['minm'].set('{:2d} %'.format(d['hum_out_min']))
     pr['maxm'].set('{:.1f} mb'.format(d['rel_pressure_max']))
     pr['minm'].set('{:.1f} mb'.format(d['rel_pressure_min']))
     vt['maxm'].set('{:.1f} km/h'.format(d['wind_gust']))
     ll['maxm'].set('{:.1f} mm'.format(d['rain']))
     ti['maxm'].set('{:.1f} ᴼC'.format(d['temp_in_max_hi']))
     ti['minm'].set('{:.1f} ᴼC'.format(d['temp_in_min_lo']))
-    hi['maxm'].set('{:.1f} %'.format(d['hum_in_max']))
-    hi['minm'].set('{:.1f} %'.format(d['hum_in_min']))
-    #TODO Procesar y mostrar datos anuales
+    hi['maxm'].set('{:2d} %'.format(d['hum_in_max']))
+    hi['minm'].set('{:2d} %'.format(d['hum_in_min']))
+    #Procesar y mostrar valores anuales
     te_max=[]
     te_min=[]
+    he_max=[]
+    he_min=[]
+    pr_max=[]
+    pr_min=[]
+    vt_max=[]
+    ll_tot=[]
+    ti_max=[]
+    ti_min=[]
+    hi_max=[]
+    hi_min=[]
     for d in datos[:]:
         te_max.append(d['temp_out_max_hi'])
         te_min.append(d['temp_out_min_lo'])
+        he_max.append(d['hum_out_max'])
+        he_min.append(d['hum_out_min'])
+        pr_max.append(d['rel_pressure_max'])
+        pr_min.append(d['rel_pressure_min'])
+        vt_max.append(d['wind_gust'])
+        ll_tot.append(d['rain'])
+        ti_max.append(d['temp_in_max_hi'])
+        ti_min.append(d['temp_in_min_lo'])
+        hi_max.append(d['hum_in_max'])
+        hi_min.append(d['hum_in_min'])
     te['maxy'].set('{:.1f} ᴼC'.format(max(te_max)))
     te['miny'].set('{:.1f} ᴼC'.format(min(te_min)))
-
+    he['maxy'].set('{:2d} %'.format(max(he_max)))
+    he['miny'].set('{:2d} %'.format(min(he_min)))
+    pr['maxy'].set('{:.1f} mb'.format(max(pr_max)))
+    pr['miny'].set('{:.1f} mb'.format(min(pr_min)))
+    vt['maxy'].set('{:.1f} km/h'.format(max(vt_max)))
+    ll['maxy'].set('{:.1f} mm'.format(sum(ll_tot)))
+    ti['maxy'].set('{:.1f} ᴼC'.format(max(ti_max)))
+    ti['miny'].set('{:.1f} ᴼC'.format(min(ti_min)))
+    hi['maxy'].set('{:2d} %'.format(max(hi_max)))
+    hi['miny'].set('{:2d} %'.format(min(hi_min)))
 
     root.after(60000,timer,root)
 
@@ -115,9 +145,9 @@ frm_ppal.rowconfigure(99, weight=1)
 #Nombre de la estacion
 lbl_station=ttk.Label(frm_ppal,text='Benifayó\nFrancisco Climent',font='TkTextFont 12 italic')
 lbl_station.grid(row=0,column=0,columnspan=5,sticky='WN')
-time_act=StringVar()
-lbl_time=ttk.Label(frm_ppal,text='2013-11-28 15:00:38 UTC',textvariable=time_act)
-lbl_time.grid(row=0,column=5,columnspan=2,sticky='E',padx=2)
+last_act=StringVar()
+lbl_last_act=ttk.Label(frm_ppal,textvariable=last_act)
+lbl_last_act.grid(row=0,column=5,columnspan=2,sticky='E',padx=2)
 # Frames de variables
 te=build_frame(frm_ppal,'Temp.exterior',1,0)
 he=build_frame(frm_ppal,'Hum. exterior',1,1)
