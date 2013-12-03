@@ -130,18 +130,16 @@ def timer(root):
     hi['miny'].set('{:2d} %'.format(min(hi_min)))
     #Graficos
     datos=DataStore.calib_store(dir_data)
-    d_graf=datos[fecha-timedelta(hours=24):]
+    d_graf=datos[datos.nearest(fecha)-timedelta(hours=24):]
     val=[],[],[]
     for d in d_graf:
         val[0].append(d['idx'])
         val[1].append(d['temp_out'])
         val[2].append(d['temp_in'])
-    #~ t = range(10)
-    #~ s = range(10)
-    subp.cla()
-    #~ subp.set_title('Tk embedding')
-    #~ subp.set_xlabel('X axis label')
-    #~ subp.set_ylabel('Y label')
+    subp.clear()
+    subp.set_title('Últimas 24 horas.')
+    subp.set_xlabel('hora')
+    subp.set_ylabel('Temp (ᴼC)')
     subp.plot(val[0],val[1])
     subp.plot(val[0],val[2])
     # a tk.DrawingArea
@@ -152,13 +150,13 @@ def timer(root):
 #Ventana y frame ppal
 wnd=Tk()
 wnd.title('Estación meteorológica')
-wnd.rowconfigure(0,weight=1)
-wnd.columnconfigure(0,weight=1)
-wnd.minsize(710,170)
+#~ wnd.rowconfigure(0,weight=1)
+#~ wnd.columnconfigure(0,weight=1)
+wnd.minsize(935,180)
 frm_ppal = ttk.Frame(wnd,padding=5)
-frm_ppal.grid(row=0,column=0,sticky='WENS')
-frm_ppal.columnconfigure(99,weight=1)
-frm_ppal.rowconfigure(99, weight=1)
+frm_ppal.grid(row=0,column=0)   #,sticky='WENS'
+#~ frm_ppal.columnconfigure(2,weight=1)
+#~ frm_ppal.rowconfigure(2, weight=1)
 
 #Nombre de la estacion
 lbl_station=ttk.Label(frm_ppal,text='Benifayó\nFrancisco Climent',font='TkTextFont 12 italic')
@@ -177,12 +175,11 @@ hi=build_frame(frm_ppal,'Hum. interior',1,6)
 
 #Frame para graficos
 frm_graf=ttk.Frame(frm_ppal,borderwidth=1,relief='flat')
-frm_graf.grid(row=99,column=0,columnspan=999,sticky='WENS')
-fig = Figure(figsize=(12,5),dpi=80)    #,dpi=72
+frm_graf.grid(row=2,column=0,columnspan=999,sticky='WENS')
+fig = Figure(figsize=(12,5),dpi=76)    #,dpi=72
 subp = fig.add_subplot(111)
 canvas = FigureCanvasTkAgg(fig, master=frm_graf)
 canvas._tkcanvas.grid(row=0,column=0,sticky='WENS')
-
 #.ini
 params=DataStore.ParamStore('.','wstation.ini')
 dir_data=params.get('paths','dir_data')
