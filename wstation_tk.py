@@ -137,14 +137,16 @@ def timer(root):
         val[2].append(d['temp_in'])
     subp.clear()
     subp.set_title('Últimas 24 horas.')
-    subp.set_xlabel('hora')
-    subp.set_ylabel('Temp (ᴼC)')
-    subp.plot(val[0],val[1])
-    subp.plot(val[0],val[2])
+    subp.set_xlabel('Hora')
+    subp.set_ylabel('Temperatura (ᴼC)')
+    subp.plot(val[0],val[1],label='T. exterior')
+    subp.plot(val[0],val[2],label='T. interior')
+    subp.legend(loc=0)
+    subp.grid(True)
     # a tk.DrawingArea
     canvas.show()
 
-    root.after(60000,timer,root)
+    root.after(600000,timer,root)
 
 #Ventana y frame ppal
 wnd=Tk()
@@ -175,8 +177,9 @@ hi=build_frame(frm_ppal,'Hum. interior',1,6)
 #Frame para graficos
 frm_graf=ttk.Frame(frm_ppal,borderwidth=1,relief='flat')
 frm_graf.grid(row=2,column=0,columnspan=999,sticky='WENS')
-fig = Figure(figsize=(12,5),dpi=76)    #,dpi=72
+fig = Figure(figsize=(12,3))    #figsize=(12,3),dpi=76
 subp = fig.add_subplot(111)
+#~ subp2=subp.twinx()
 canvas = FigureCanvasTkAgg(fig, master=frm_graf)
 canvas._tkcanvas.grid(row=0,column=0,sticky='WENS')
 #.ini
