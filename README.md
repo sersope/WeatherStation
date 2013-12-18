@@ -1,4 +1,4 @@
-WeatherStation
+wstation
 ==============
 
 Basic GUI for pywws
