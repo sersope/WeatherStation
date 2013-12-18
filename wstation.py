@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 from __future__ import division,absolute_import,print_function,unicode_literals
 
-import os, gettext
+import os, gettext,locale
 from gi.repository import Gtk, GObject
 from pywws import DataStore,TimeZone
 from datetime import datetime,timedelta
@@ -11,10 +11,16 @@ from matplotlib.figure import Figure
 from matplotlib import dates
 from matplotlib.ticker import MultipleLocator
 
-gettext.install('wstation','locale',unicode=True)
+APP_DIR=os.path.dirname(os.path.realpath(__file__))
+LANG_DIR=os.path.join(APP_DIR,'lang')
+LANG_DOM='wstation'
+UI_FILE = os.path.join(APP_DIR,'wstation.glade')
+PARAM_FILE='wstation.ini'
 
-ui_file = 'wstation.ui'
-param_file='wstation.ini'
+locale.setlocale(locale.LC_ALL,'')
+locale.bindtextdomain(LANG_DOM,LANG_DIR)
+gettext.install(LANG_DOM,LANG_DIR,unicode=True)
+
 
 labels = ['a_temp_out','a_hum_out','a_rel_pressure','a_wind_gust','a_wind_dir','a_temp_in',
     'a_hum_in','d_temp_out_max','d_temp_out_min','d_hum_out_max','d_hum_out_min','d_rel_pressure_max',
@@ -72,12 +78,13 @@ class MainWindow(object):
     def __init__(self):
 
         self.builder = Gtk.Builder()
-        self.builder.add_from_file(os.path.join(app_dir,ui_file))
+        self.builder.set_translation_domain(LANG_DOM)
+        self.builder.add_from_file(UI_FILE)
         self.builder.connect_signals(self)
         self.win=self.builder.get_object('window1')
         self.graf_box=self.builder.get_object('graf_box')
         self.statusbar = self.builder.get_object('statusbar')
-        self.statusbar.push(1,_('Último acceso:'))
+        self.statusbar.push(1,_('Last access: '))
         self.ui_label={}
         for label in labels:
             self.ui_label[label]=self.builder.get_object(label)
@@ -99,10 +106,10 @@ class MainWindow(object):
 
     def get_params(self):
         #Obtener parametros de programa
-        params=DataStore.ParamStore(app_dir,param_file)
+        params=DataStore.ParamStore(APP_DIR,PARAM_FILE)
         self.dir_data=params.get('paths','dir_data')
         if self.dir_data==None:
-            dialog = Gtk.FileChooserDialog(_("Seleccione carpeta de datos pywws:"), self.win,
+            dialog = Gtk.FileChooserDialog(_("Select pywws data folder:"), self.win,
                      Gtk.FileChooserAction.SELECT_FOLDER,
                     (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,Gtk.STOCK_OK, Gtk.ResponseType.OK))
             response = dialog.run()
@@ -115,7 +122,7 @@ class MainWindow(object):
             dialog.destroy()
         if not os.path.exists(self.dir_data):
             dialog = Gtk.MessageDialog(self.win,0, Gtk.MessageType.ERROR,Gtk.ButtonsType.CANCEL,
-                     _("La carpeta de datos pywws no existe."))
+                     _("pywws data folder does not exist."))
             dialog.run()
             dialog.destroy()
             return False
@@ -125,10 +132,10 @@ class MainWindow(object):
         self.statusbar.pop(1)
         pywws_data=get_pywws_data(self.dir_data)
         if pywws_data==None:
-            self.statusbar.push(1,_('Problema de acceso a datos de pywws.'))
+            self.statusbar.push(1,_('Error accessing pywws data.'))
             return True
         idx=pywws_data['a']['idx'].replace(tzinfo=TimeZone.utc).astimezone(TimeZone.Local)
-        self.statusbar.push(1,_('Último acceso: ')+idx.strftime('%c').decode('utf-8'))
+        self.statusbar.push(1,_('Last access: ')+idx.strftime('%c').decode('utf-8'))
         for label in labels:
             tipo_k,pywws_k,strfmt=_parse_label(label)
             self.ui_label[label].set_label(strfmt.format(pywws_data[tipo_k][pywws_k]))
@@ -144,12 +151,12 @@ class MainWindow(object):
         self.plot1.clear()
         self.plot2.clear()
         self.plot3.clear()
-        self.plot1.plot(val[0],val[1],label=_('T. exterior'))
-        self.plot1.plot(val[0],val[2],label=_('T. interior'))
-        self.plot2.plot(val[0],val[3],label=_('H. exterior'),color='red')
-        self.plot2.plot(val[0],val[4],label=_('H. interior'),color='magenta')
-        self.plot3.plot(val[0],val[5],label=_('Lluvia'))
-        self.plot1.set_title(_('Últimas 24 horas.'),fontsize=10)
+        self.plot1.plot(val[0],val[1],label=_('Outdoor Temp.'))
+        self.plot1.plot(val[0],val[2],label=_('Indoor Temp.'))
+        self.plot2.plot(val[0],val[3],label=_('Outdoor Hum.'),color='red')
+        self.plot2.plot(val[0],val[4],label=_('Indoor Hum.'),color='magenta')
+        self.plot3.plot(val[0],val[5],label=_('Rain'))
+        self.plot1.set_title(_('Last 24 hours.'),fontsize=10)
         self.plot1.set_ylabel(_('ᴼC'),fontsize=10)
         self.plot2.set_ylabel(_('%'),fontsize=10)
         self.plot3.set_ylabel(_('mm'),fontsize=10)
@@ -168,5 +175,4 @@ class MainWindow(object):
     def run(self):
         Gtk.main()
 
-app_dir=os.path.dirname(os.path.realpath(__file__))
 MainWindow().run()
