@@ -1,0 +1,151 @@
+# #-#-#-#-#  messages.po (PACKAGE VERSION)  #-#-#-#-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# #-#-#-#-#  messages.pot (PACKAGE VERSION)  #-#-#-#-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"#-#-#-#-#  messages.po (PACKAGE VERSION)  #-#-#-#-#\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-18 11:52+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  messages.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2013-12-18 12:31+CET\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Generated-By: pygettext.py 1.5\n"
+
+#: wstation.glade:6
+msgid "Weather Station"
+msgstr ""
+
+#: wstation.glade:40 wstation.glade:128 wstation.glade:144 wstation.glade:160
+#: wstation.glade:176 wstation.glade:192 wstation.glade:208 wstation.glade:274
+#: wstation.glade:345 wstation.glade:361 wstation.glade:377 wstation.glade:393
+#: wstation.glade:409 wstation.glade:425 wstation.glade:507 wstation.glade:594
+#: wstation.glade:610 wstation.glade:626 wstation.glade:642 wstation.glade:658
+#: wstation.glade:674 wstation.glade:740 wstation.glade:811 wstation.glade:827
+#: wstation.glade:843 wstation.glade:859 wstation.glade:977 wstation.glade:993
+#: wstation.glade:1009 wstation.glade:1078 wstation.glade:1167
+#: wstation.glade:1183 wstation.glade:1199 wstation.glade:1215
+#: wstation.glade:1231 wstation.glade:1247 wstation.glade:1313
+#: wstation.glade:1403 wstation.glade:1419 wstation.glade:1435
+#: wstation.glade:1451 wstation.glade:1467 wstation.glade:1483
+msgid "-----"
+msgstr ""
+
+#: wstation.glade:56 wstation.glade:441 wstation.glade:523 wstation.glade:756
+#: wstation.glade:1094 wstation.glade:1329
+msgid "Max."
+msgstr ""
+
+#: wstation.glade:72 wstation.glade:290 wstation.glade:539 wstation.glade:1110
+#: wstation.glade:1345
+msgid "Min."
+msgstr ""
+
+#: wstation.glade:88 wstation.glade:306 wstation.glade:555 wstation.glade:772
+#: wstation.glade:938 wstation.glade:1127 wstation.glade:1362
+msgid "Today:"
+msgstr ""
+
+#: wstation.glade:101 wstation.glade:319 wstation.glade:568 wstation.glade:785
+#: wstation.glade:951 wstation.glade:1140 wstation.glade:1376
+msgid "Month:"
+msgstr ""
+
+#: wstation.glade:115 wstation.glade:332 wstation.glade:581 wstation.glade:798
+#: wstation.glade:964 wstation.glade:1154 wstation.glade:1390
+msgid "Year:"
+msgstr ""
+
+#: wstation.glade:240 wstation.py:148
+msgid "Outdoor Temp."
+msgstr ""
+
+#: wstation.glade:473 wstation.py:150
+msgid "Outdoor Hum."
+msgstr ""
+
+#: wstation.glade:706
+msgid "Pressure"
+msgstr ""
+
+#: wstation.glade:888
+msgid "Wind"
+msgstr ""
+
+#: wstation.glade:922
+msgid "Total"
+msgstr ""
+
+#: wstation.glade:1044 wstation.py:152
+msgid "Rain"
+msgstr ""
+
+#: wstation.glade:1279 wstation.py:149
+msgid "Indoor Temp."
+msgstr ""
+
+#: wstation.glade:1515 wstation.py:151
+msgid "Indoor Hum."
+msgstr ""
+
+#: wstation.glade:1583
+msgid "_File"
+msgstr ""
+
+#: wstation.glade:1607
+msgid "_Help"
+msgstr ""
+
+#: wstation.py:81 wstation.py:132
+msgid "Last access: "
+msgstr ""
+
+#: wstation.py:106
+msgid "Select pywws data folder:"
+msgstr ""
+
+#: wstation.py:119
+msgid "pywws data folder does not exist."
+msgstr ""
+
+#: wstation.py:129
+msgid "Error accessing pywws data."
+msgstr ""
+
+#: wstation.py:153
+msgid "Last 24 hours."
+msgstr ""
+
+#: wstation.py:154
+msgid "ᴼC"
+msgstr ""
+
+#: wstation.py:155
+msgid "%"
+msgstr ""
+
+#: wstation.py:156
+msgid "mm"
+msgstr ""
