@@ -102,7 +102,7 @@ class MainWindow(object):
         self.win.show_all()
         if self.get_params():
             self.update_ui()
-            GObject.timeout_add_seconds(10,self.update_ui)
+            GObject.timeout_add_seconds(180,self.update_ui)
 
     def get_params(self):
         #Obtener parametros de programa
