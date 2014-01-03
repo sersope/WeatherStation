@@ -51,6 +51,7 @@ def get_pywws_data(dir_data):
     try:
         dat = DataStore.calib_store(dir_data)
         adat = dat[dat.nearest(ahora)]
+        gdat = dat[dat.nearest(ahora)-timedelta(hours=24):]
         dat = DataStore.hourly_store(dir_data)
         hdat = dat[dat.nearest(ahora)-timedelta(hours=24):]
         dat = DataStore.daily_store(dir_data)
@@ -68,7 +69,7 @@ def get_pywws_data(dir_data):
                     ydat[k] = max(ydat[k],d[k])
     except:
         return None
-    return {'a':adat,'h':hdat,'d':ddat,'m':mdat,'y':ydat}
+    return {'a':adat,'g':gdat,'h':hdat,'d':ddat,'m':mdat,'y':ydat}
 
 
 class MainWindow(object):
@@ -140,14 +141,16 @@ class MainWindow(object):
             tipo_k,pywws_k,strfmt=_parse_label(label)
             self.ui_label[label].set_label(strfmt.format(pywws_data[tipo_k][pywws_k]))
         #plotting
-        val=[],[],[],[],[],[]
-        for d in pywws_data['h']:
+        val=[],[],[],[],[],[],[]
+        for d in pywws_data['g']:
             val[0].append(d['idx'])
             val[1].append(d['temp_out'])
             val[2].append(d['temp_in'])
             val[3].append(d['hum_out'])
             val[4].append(d['hum_in'])
-            val[5].append(d['rain'])
+        for d in pywws_data['h']:
+            val[5].append(d['idx'])
+            val[6].append(d['rain'])
         self.plot1.clear()
         self.plot2.clear()
         self.plot3.clear()
@@ -155,7 +158,7 @@ class MainWindow(object):
         self.plot1.plot(val[0],val[2],label=_('Indoor Temp.'))
         self.plot2.plot(val[0],val[3],label=_('Outdoor Hum.'),color='red')
         self.plot2.plot(val[0],val[4],label=_('Indoor Hum.'),color='magenta')
-        self.plot3.plot(val[0],val[5],label=_('Rain'))
+        self.plot3.plot(val[5],val[6],label=_('Rain'))
         self.plot1.set_title(_('Last 24 hours.'),fontsize=10)
         self.plot1.set_ylabel(_('ᴼC'),fontsize=10)
         self.plot2.set_ylabel(_('%'),fontsize=10)
